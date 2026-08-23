@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins="http://localhost:4200")
 public class ProjectController {
 
+	private final ProjectService projectService;
+
+	public ProjectController(ProjectService projectService) {
+		this.projectService = projectService;
+	}
+
 	@GetMapping
 	public List<Project> getProjects() {
-		return List.of(
-			new Project(1L, "Digital Europe Portal"),
-			new Project(2L, "Green Mobility Programme")
-		);
+		return projectService.getProjects();
 	}
 }
