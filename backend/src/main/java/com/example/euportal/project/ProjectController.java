@@ -1,11 +1,13 @@
 package com.example.euportal.project;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,4 +36,11 @@ public class ProjectController {
 		Project createdProject = projectService.createProject(request.name());
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdProject);
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Project> getSingleProject(@PathVariable Long id) {
+		Optional <Project> project = projectService.getSingleProject(id);
+		return project.map(p -> ResponseEntity.ok(p)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+
 }

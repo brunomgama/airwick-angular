@@ -2,14 +2,15 @@
 
 <ul>
   @for (project of projectList(); track project.id) {
-    <li>{{ project.name }}</li>
+      <a [routerLink]="['/project', project.id]">
+        {{ project.name }}
+      </a>
   }
 </ul>
 
 <div class="example-button-row">
   <button (click)=createTestRequest() matButton>Basic</button>
 </div>
-
 
 <mat-form-field class="example-form-field">
   <mat-label>Project title</mat-label>

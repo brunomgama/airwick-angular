@@ -1,6 +1,7 @@
 package com.example.euportal.project;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,9 @@ public class ProjectService {
 	public Project createProject(String name) {
 		Project p = new Project(null, name);
 		return projectRepository.save(p);
+	}
+
+	public Optional<Project> getSingleProject(Long id) {
+		return projectRepository.findById(id);
 	}
 }
