@@ -9,5 +9,5 @@ import { ProjectList } from './projects/project-list';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('EU Project Management Portal II');
+  protected readonly title = signal('Project Management Portal II');
 }

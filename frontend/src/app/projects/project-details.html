@@ -1,8 +1,18 @@
 <h2>PROJECT DETAILS WORKS</h2>
 
 <ul>
-  @if (project()) {
-    <p>ID: {{ project()!.id }}</p>
-    <p>Name: {{ project()!.name }}</p>
+  @if (project(); as p) {
+    <p>ID: {{ p.id }}</p>
+    <p>Name: {{ p.name }}</p>
+    <mat-form-field class="example-form-field">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="projectTitle">
+    </mat-form-field>
   }
 </ul>
+
+<div class="example-button-row">
+  <button (click)="updateProject()" matButton>Update</button>
+</div>

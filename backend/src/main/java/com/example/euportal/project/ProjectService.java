@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProjectService {
 
@@ -25,5 +27,24 @@ public class ProjectService {
 
 	public Optional<Project> getSingleProject(Long id) {
 		return projectRepository.findById(id);
+	}
+
+	@Transactional
+	public Optional<Project> updateProject(Long id, String name) {
+		return projectRepository.findById(id).map(p -> {
+			p.setName(name);
+			// return projectRepository.save(p);
+			return p;
+		});
+	}
+
+	@Transactional
+	public Optional<Project> patchProject(Long id, String name) {
+		return projectRepository.findById(id).map(p -> {
+			if(name != null && !name.isBlank()) {
+				p.setName(name);
+			}
+			return p;
+		});
 	}
 }
